@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mapa de Arequipa</title>
+    <link rel="stylesheet" href="/static/mapa.css">
+    <link rel="stylesheet" href="/static/detalleRuta.css">
+    <link rel="stylesheet" href="/static/formRuta.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css" />
+</head>
+<body>
+    <div id="map"></div>
+    <div id="panel">
+        <h4>Buscar ruta</h4>
+        <input type="text" id="origen" placeholder="Lat,Lng de origen">
+        <input type="text" id="destino" placeholder="Lat,Lng de destino">
+        <button onclick="seleccionarCoordenada('origen')">📍 Seleccionar origen en mapa</button>
+        <button onclick="seleccionarCoordenada('destino')">📍 Seleccionar destino en mapa</button>
+        <button onclick="buscarRuta()">🔍 Buscar</button>
+        <div id="resultado-busqueda"></div>
+        <h3>Rutas</h3>
+        <button onclick="exportarTodasRutas()">📥 Descargar todas</button>
+        <ul id="lista-rutas"></ul>
+    </div>
+    <!-- Overlay con sombra + panel central -->
+    <div id="overlay-detalle" class="oculto">
+        <div class="modal-detalle">
+            <button id="cerrar-detalle">✖</button>
+            <div id="detalle-ruta">
+                <!-- Aquí se inyectará el contenido -->
+            </div>
+        </div>
+    </div>
+    <!-- Formulario oculto para nueva ruta -->
+    <form id="form-subir-ruta" enctype="multipart/form-data">
+        <h4>Guardar nueva ruta</h4>
+        <input type="text" name="nombre" placeholder="Nombre de la línea" required>
+        <input type="text" name="descripcion" placeholder="Descripción">
+        
+        <!-- Selector visual de color -->
+        <label for="color">Color:</label>
+        <input type="color" name="color" id="color" required>
+        
+        <input type="text" name="nombre_combi" placeholder="Nombre de la combi" value="Combi genérica">
+        <input type="file" name="imagen" accept="image/*" required>
+        <input type="hidden" name="ruta_json">
+        <button type="submit">Guardar ruta</button>
+    </form>
+    <!-- Librerías externas -->
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
+
+    <!-- Scripts propios -->
+    <script src="/static/detalleRuta.js?v=2"></script>
+    <script src="/static/mapa.js?v=2"></script>
+    <script src="/static/buscador.js?v=3"></script>
+    <script src="/static/cargarRutas.js?v=2"></script>
+    <script src="/static/editarRuta.js?v=2"></script>
+</body>
+</html>

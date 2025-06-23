@@ -1,0 +1,3 @@
+pip install osmnx networkx matplotlib
+pip install scikit-learn
+pip install folium
